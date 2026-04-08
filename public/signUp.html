@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login / Register - Questionify</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { primary: '#e91e63' } } } }
+  </script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4 md:p-8">
+
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden relative">
+
+    <!-- Back Button -->
+    <button onclick="history.back()"
+      class="absolute top-3 left-5 z-10 inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm font-medium shadow-sm">
+      ← Back
+    </button>
+
+    <div class="flex border-b border-gray-200 gap-2 items-center md:mt-14">
+      <button id="loginTab"
+        class="text-lg rounded-[10px] font-semibold ml-7 h-[50px] w-[50%] text-gray-600 focus:outline-none transition-colors cursor-pointer group">Login</button>
+      <button id="registerTab"
+        class="text-lg rounded-[10px] font-semibold mr-7 h-[50px] w-[50%] text-gray-600 focus:outline-none transition-colors cursor-pointer group">Register</button>
+    </div>
+
+    <div class="p-8 pt-6">
+      <!-- Login Form -->
+      <div id="login-content">
+        <form id="loginForm" class="space-y-6">
+          <div>
+            <label for="loginEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input type="email" id="loginEmail"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
+              placeholder="you@example.com" required />
+          </div>
+          <div>
+            <label for="loginPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <input type="password" id="loginPassword"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
+              placeholder="••••••••" required />
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <input type="checkbox" id="remember"
+                class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded" />
+              <label for="remember" class="ml-2 block text-sm text-gray-700">Remember me</label>
+            </div>
+            <a href="#" class="text-sm text-primary hover:underline">Forgot password?</a>
+          </div>
+          <button type="submit"
+            class="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-pink-700 transition">Sign
+            In</button>
+          <div class="text-center text-sm text-gray-500">Or continue with</div>
+          <div class="grid grid-cols-2 gap-4">
+            <button type="button"
+              class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition cursor-pointer shadow-sm">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google"
+                class="w-6 h-6 mr-3" />
+              <span class="text-gray-700 font-medium">Google</span>
+            </button>
+            <button type="button"
+              class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition cursor-pointer shadow-sm">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple"
+                class="w-6 h-6 mr-3" />
+              <span class="text-gray-700 font-medium">Apple</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Register Form -->
+      <div id="register-content" class="hidden">
+        <div id="registerStep1">
+          <form id="registerFormStep1" class="space-y-6">
+            <div>
+              <label for="registerName" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+              <input type="text" id="registerName"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
+                placeholder="Your Full Name" required />
+            </div>
+            <div>
+              <label for="registerEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <input type="email" id="registerEmail"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
+                placeholder="you@example.com" required />
+            </div>
+            <div>
+              <label for="registerPhone" class="block text-sm font-medium text-gray-700 mb-1">Email for OTP (free
+                test)</label>
+              <input type="email" id="registerPhone"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
+                placeholder="your.email@gmail.com" required />
+            </div>
+            <div>
+              <label for="registerPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              <input type="password" id="registerPassword"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
+                placeholder="••••••••" required minlength="6" />
+            </div>
+            <div>
+              <label for="registerConfirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirm
+                Password</label>
+              <input type="password" id="registerConfirmPassword"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
+                placeholder="••••••••" required />
+            </div>
+            <button type="submit"
+              class="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-pink-700 transition">Send OTP &
+              Continue</button>
+          </form>
+        </div>
+
+        <div id="registerStep2" class="hidden space-y-6">
+          <h3 class="text-lg font-semibold text-center">Enter OTP</h3>
+          <p class="text-sm text-gray-600 text-center">Check your email (including spam)</p>
+          <input type="text" id="otpInput" maxlength="6"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg text-center text-2xl tracking-widest focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+            placeholder="------" required />
+          <button id="verifyOtpBtn"
+            class="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-pink-700 transition">Verify
+            OTP</button>
+          <button id="resendOtpBtn" class="w-full py-2 text-primary font-medium hover:underline">Resend OTP</button>
+          <p id="otpMessage" class="text-center text-sm font-medium"></p>
+        </div>
+      </div>
+    </div>
+
+    <div id="authFooter" class="text-center py-6 text-sm text-gray-600 border-t">
+      Don't have an account?
+      <button onclick="showTab('register')"
+        class="text-primary font-medium hover:underline cursor-pointer">Register</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const API_KEY = "4whxTesomK1gZ5cBq9Hk8OIy";
+      const PROJECT_ID = "01jttgwp4nq5n4az3f3gc4hry1";
+      const BASE_URL = "https://core.hisend.hunnovate.com/api/v1";
+      const TABLE_ID = "questionify_users";
+
+      let currentReference = "";
+      let currentEmail = "";
+
+      // ====================== TAB SWITCHING (FIXED) ======================
+      function showTab(tab) {
+        const loginTab = document.getElementById('loginTab');
+        const registerTab = document.getElementById('registerTab');
+        const loginContent = document.getElementById('login-content');
+        const registerContent = document.getElementById('register-content');
+        const footer = document.getElementById('authFooter');
+
+        loginTab.classList.toggle('bg-primary', tab === 'login');
+        loginTab.classList.toggle('text-white', tab === 'login');
+        registerTab.classList.toggle('bg-primary', tab === 'register');
+        registerTab.classList.toggle('text-white', tab === 'register');
+
+        loginContent.classList.toggle('hidden', tab !== 'login');
+        registerContent.classList.toggle('hidden', tab !== 'register');
+
+        footer.innerHTML = tab === 'login'
+          ? `Don't have an account? <button onclick="showTab('register')" class="text-primary font-medium hover:underline cursor-pointer">Register</button>`
+          : `Already have an account? <button onclick="showTab('login')" class="text-primary font-medium hover:underline cursor-pointer">Login</button>`;
+      }
+
+      // Make tabs clickable
+      document.getElementById('loginTab').addEventListener('click', () => showTab('login'));
+      document.getElementById('registerTab').addEventListener('click', () => showTab('register'));
+
+      showTab('login'); // start on login
+
+      // ====================== LOGIN CHECK ======================
+
+      // Attach login to form submit
+      document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
+
+        if (!email || !password) {
+          alert("Please enter both email and password");
+          return;
+        }
+
+        try {
+          // Fetch all users from HiSend table
+          const res = await fetch(`${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`);
+          const result = await res.json();
+
+          const users = result.data?.data || [];
+
+          // Find the user by email & password
+          const foundUser = users.find(user =>
+            user.fields?.email === email &&
+            user.fields?.user_password === password
+          );
+
+          if (foundUser) {
+            alert("Login successful ✅");
+            localStorage.setItem("auth_token", foundUser.id); // save token/user id
+            window.location.href = "dashboard.html"; // redirect
+          } else {
+            alert("Invalid email or password ❌");
+          }
+
+        } catch (err) {
+          console.error("Login error:", err);
+          alert("Login failed. Check console for details.");
+        }
+      });
+
+      document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+
+        try {
+
+          const res = await fetch(
+            `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`
+          );
+
+          const data = await res.json();
+
+          const users = data.data?.data || [];
+
+          const foundUser = users.find(
+            user => user.email === email && user.user_password === password
+          );
+
+          if (foundUser) {
+            window.location.href = "dashboard.html";
+          } else {
+            alert("Invalid email or password");
+          }
+
+        } catch (err) {
+          console.error(err);
+          alert("Login error");
+        }
+      });
+
+      // ====================== LOGIN CHECK ======================
+      document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
+
+        try {
+
+          const res = await fetch(
+            `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`
+          );
+
+          const result = await res.json();
+
+          console.log(result); // helps debug
+
+          const users = result.data?.data || [];
+
+          const foundUser = users.find(user =>
+            user.email === email && user.user_password === password
+          );
+
+          if (foundUser) {
+
+            alert("Login successful ✅");
+            window.location.href = "dashboard.html";
+
+          } else {
+
+            alert("Invalid email or password ❌");
+
+          }
+
+        } catch (error) {
+
+          console.error(error);
+          alert("Login failed. Check console.");
+
+        }
+      });
+
+      document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
+
+        try {
+
+          const res = await fetch(
+            `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`
+          );
+
+          const result = await res.json();
+
+          const users = result.data?.data || [];
+
+          const foundUser = users.find(user =>
+            user.fields?.email === email &&
+            user.fields?.user_password === password
+          );
+
+          if (foundUser) {
+
+            alert("Login successful ✅");
+            window.location.href = "dashboard.html";
+
+          } else {
+
+            alert("Invalid email or password ❌");
+
+          }
+
+        } catch (error) {
+
+          console.error(error);
+          alert("Login error");
+
+        }
+      });
+
+
+      // ====================== REST OF YOUR CODE (unchanged) ======================
+      // Login, Register OTP, Verify, etc. (same as last version)
+      // ... (I kept the full working register flow with your exact columns)
+
+      document.getElementById("registerFormStep1").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const name = document.getElementById("registerName").value.trim();
+        const email = document.getElementById("registerEmail").value.trim();
+        const identifier = document.getElementById("registerPhone").value.trim();
+        const password = document.getElementById("registerPassword").value;
+        const confirm = document.getElementById("registerConfirmPassword").value;
+
+        if (password !== confirm) return alert("Passwords don't match");
+
+        currentEmail = identifier;
+
+        try {
+          const res = await fetch(`${BASE_URL}/otp/send?customer_identifier=${encodeURIComponent(identifier)}&channel=email&api_key=${API_KEY}`);
+          const data = await res.json();
+
+          if (data.data?.reference) {
+            currentReference = data.data.reference;
+            document.getElementById("registerStep1").classList.add("hidden");
+            document.getElementById("registerStep2").classList.remove("hidden");
+            document.getElementById("otpMessage").innerHTML = `OTP sent to ${identifier}! Check email/spam`;
+            document.getElementById("otpMessage").className = "text-center text-sm text-green-600";
+          }
+        } catch (err) { console.error(err); }
+      });
+
+      document.getElementById("verifyOtpBtn").addEventListener("click", async () => {
+        const otp = document.getElementById("otpInput").value.trim();
+        if (otp.length !== 6) return alert("Enter 6-digit OTP");
+
+        try {
+          const valRes = await fetch(`${BASE_URL}/otp/validate?reference=${currentReference}&otp=${otp}&api_key=${API_KEY}`);
+          const valData = await valRes.json();
+
+          if (valData.data?.success) {
+            const name = document.getElementById("registerName").value.trim();
+            const email = document.getElementById("registerEmail").value.trim();
+            const password = document.getElementById("registerPassword").value;
+
+            const regRes = await fetch(
+              `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  name: name,
+                  email: email,
+                  phone_number: currentEmail,
+                  user_password: password
+                })
+              }
+            );
+
+            if (regRes.ok) {
+              alert("Account created & verified! 🎉 Redirecting...");
+              window.location.href = "dashboard.html";
+            } else {
+              alert("Registration failed – check console");
+            }
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      });
+
+      document.getElementById("resendOtpBtn").addEventListener("click", () => {
+        document.getElementById("registerFormStep1").dispatchEvent(new Event("submit"));
+      });
+    });
+  </script>
+</body>
+
+</html>

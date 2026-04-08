@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard - Questionify</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#e91e63',
+            secondary: '#673ab7',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans antialiased">
+
+  <!-- Admin Password Prompt (on load) -->
+  <script>
+    const adminPass = prompt("Enter Admin Password (hint: admin123):");
+    if (adminPass !== "admin123") {
+      alert("Access denied! Redirecting to home...");
+      window.location.href = "index.html"; // your home page
+    }
+  </script>
+
+  <!-- Floating Back Button -->
+  <button onclick="history.back()" 
+          class="fixed bottom-6 left-6 z-50 bg-primary text-white px-5 py-3 rounded-full shadow-xl hover:bg-pink-700 transition flex items-center space-x-2">
+    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+    </svg>
+    <span>Back</span>
+  </button>
+
+  <!-- Top Bar -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <div class="text-2xl font-bold text-primary">Questionify</div>
+        <span class="text-gray-500 font-medium">Admin Panel</span>
+      </div>
+
+      <div class="flex items-center space-x-6">
+        <!-- Search -->
+        <div class="relative hidden sm:block">
+          <input type="text" placeholder="Search..." class="w-64 pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition text-sm" />
+          <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+
+        <!-- Notifications -->
+        <button class="relative p-2 text-gray-500 hover:text-primary transition">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+          </svg>
+          <span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+        </button>
+
+        <!-- Avatar -->
+        <div class="flex items-center space-x-2">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=128&h=128&q=80" alt="Admin" class="w-10 h-10 rounded-full object-cover border-2 border-primary" />
+          <span class="font-medium text-gray-800 hidden md:block">Admin</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar – fixed/sticky -->
+    <aside class="hidden md:block w-64 bg-white shadow-md h-screen sticky top-0 overflow-y-auto">
+      <nav class="px-4 py-8 space-y-2">
+        <a href="dashboard.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-xl transition">
+          <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          User Dashboard
+        </a>
+
+        <a href="#" class="flex items-center px-4 py-3 bg-primary/10 text-primary rounded-xl font-medium">
+          <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+          Admin Dashboard
+        </a>
+
+        <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-xl transition">
+          <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+          Manage Questions
+        </a>
+
+        <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-xl transition">
+          <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Moderate Submissions
+        </a>
+
+        <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-xl transition">
+          <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Finances
+        </a>
+
+        <hr class="my-6 border-gray-200" />
+
+        <a href="index.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-xl transition">
+          <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          Back to Site
+        </a>
+
+        <a href="index.html" onclick="alert('Logged out!');" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-xl transition">
+          <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          Logout
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 md:p-10 overflow-y-auto">
+
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+        Admin Dashboard
+      </h1>
+      <p class="text-gray-600 mb-10">
+        Manage questions, moderate user submissions, and track platform finances.
+      </p>
+
+      <!-- Quick Stats -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div class="bg-white p-6 rounded-2xl shadow-lg">
+          <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Questions</h3>
+          <p class="text-4xl font-bold text-primary">1,847</p>
+          <p class="text-sm text-gray-500 mt-1">+124 this week</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-lg">
+          <h3 class="text-lg font-semibold text-gray-700 mb-2">Pending Moderation</h3>
+          <p class="text-4xl font-bold text-yellow-600">47</p>
+          <p class="text-sm text-gray-500 mt-1">User submissions</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-lg">
+          <h3 class="text-lg font-semibold text-gray-700 mb-2">Active Subscribers</h3>
+          <p class="text-4xl font-bold text-green-600">312</p>
+          <p class="text-sm text-gray-500 mt-1">+28 this month</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-lg">
+          <h3 class="text-lg font-semibold text-gray-700 mb-2">Revenue (NGN)</h3>
+          <p class="text-4xl font-bold text-primary">₦1,248,000</p>
+          <p class="text-sm text-gray-500 mt-1">This month</p>
+        </div>
+      </div>
+
+      <!-- Manage Questions -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Manage Questions</h2>
+
+        <!-- Add New Question Form -->
+        <div class="mb-12">
+          <h3 class="text-xl font-semibold mb-4">Add New Question</h3>
+          <form id="addQuestionForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+              <select id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg">
+                <option>Mathematics</option>
+                <option>English Language</option>
+                <option>Physics</option>
+                <option>Chemistry</option>
+                <option>Biology</option>
+                <option>Literature In English</option>
+                <option>Government</option>
+                <option>Yoruba</option>
+                <option>History</option>
+                <option>Civic Education</option>
+                <option>Agricultural Science</option>
+                <option>Financial Accounting</option>
+                <option>Further Mathematics</option>
+                <option>Commerce</option>
+                <option>Geography</option>
+                <option>Office Practice</option>
+                <option>Marketing</option>
+                <option>Book Keeping</option>
+                <option>Christian Religious Studies</option>
+              </select>
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Question</label>
+              <textarea id="question" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg" placeholder="Enter question here..." required></textarea>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Option A</label>
+              <input type="text" id="optA" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Option B</label>
+              <input type="text" id="optB" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Option C</label>
+              <input type="text" id="optC" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Option D</label>
+              <input type="text" id="optD" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Correct Option</label>
+              <select id="correct" class="w-full px-4 py-3 border border-gray-300 rounded-lg">
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+              </select>
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Explanation</label>
+              <textarea id="explanation" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg"></textarea>
+            </div>
+
+            <div class="md:col-span-2">
+              <button type="submit" class="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-pink-700 transition">
+                Add Question
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Questions List -->
+        <h3 class="text-xl font-semibold mb-4">Questions List</h3>
+        <div id="questionsList" class="space-y-4">
+          <!-- Questions appear here -->
+        </div>
+      </div>
+
+      <!-- Moderate Submissions -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 mb-12">
+        <h2 class="text-2xl font-bold mb-6">Moderate User Submissions</h2>
+        <p class="text-gray-600 mb-4">Pending questions from users/teachers</p>
+        <div class="space-y-6">
+          <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition">
+            <p class="font-medium">What is the capital of France?</p>
+            <p class="text-sm text-gray-600 mt-1">Submitted by user123 • 2 hours ago</p>
+            <div class="mt-3 flex space-x-4">
+              <button onclick="alert('Question approved!')" class="text-green-600 hover:underline">Approve</button>
+              <button onclick="alert('Question rejected!')" class="text-red-600 hover:underline">Reject</button>
+              <button onclick="alert('Edit coming soon')" class="text-blue-600 hover:underline">Edit</button>
+            </div>
+          </div>
+
+          <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition">
+            <p class="font-medium">Solve 2x + 5 = 15</p>
+            <p class="text-sm text-gray-600 mt-1">Submitted by student456 • 5 hours ago</p>
+            <div class="mt-3 flex space-x-4">
+              <button onclick="alert('Question approved!')" class="text-green-600 hover:underline">Approve</button>
+              <button onclick="alert('Question rejected!')" class="text-red-600 hover:underline">Reject</button>
+              <button onclick="alert('Edit coming soon')" class="text-blue-600 hover:underline">Edit</button>
+            </div>
+          </div>
+
+          <!-- More fake pending if you want -->
+        </div>
+      </div>
+
+      <!-- Finances -->
+      <div class="bg-white rounded-2xl shadow-lg p-8">
+        <h2 class="text-2xl font-bold mb-6">Finances Overview</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="text-center">
+            <p class="text-gray-600">Total Revenue</p>
+            <p class="text-4xl font-bold text-primary mt-2">₦1,248,000</p>
+          </div>
+          <div class="text-center">
+            <p class="text-gray-600">Active Subscribers</p>
+            <p class="text-4xl font-bold text-green-600 mt-2">312</p>
+          </div>
+          <div class="text-center">
+            <p class="text-gray-600">This Month</p>
+            <p class="text-4xl font-bold text-blue-600 mt-2">₦248,000</p>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-semibold mb-4">Recent Payments</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="p-4">Date</th>
+                <th class="p-4">User</th>
+                <th class="p-4">Amount</th>
+                <th class="p-4">Plan</th>
+                <th class="p-4">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b">
+                <td class="p-4">2025-02-05</td>
+                <td class="p-4">Ashley Smith</td>
+                <td class="p-4">₦5,000</td>
+                <td class="p-4">Monthly</td>
+                <td class="p-4 text-green-600">Paid</td>
+              </tr>
+              <tr class="border-b">
+                <td class="p-4">2025-02-04</td>
+                <td class="p-4">John Doe</td>
+                <td class="p-4">₦20,000</td>
+                <td class="p-4">Yearly</td>
+                <td class="p-4 text-green-600">Paid</td>
+              </tr>
+              <tr class="border-b">
+                <td class="p-4">2025-01-30</td>
+                <td class="p-4">Sarah Johnson</td>
+                <td class="p-4">₦5,000</td>
+                <td class="p-4">Monthly</td>
+                <td class="p-4 text-green-600">Paid</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Edit Modal -->
+  <div id="editModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Edit Question</h2>
+        <button onclick="document.getElementById('editModal').classList.add('hidden')" class="text-gray-500 hover:text-gray-700 text-3xl">×</button>
+      </div>
+
+      <form id="editForm" class="space-y-6">
+        <input type="hidden" id="editIndex" />
+
+        <div>
+          <label class="block text-sm font-medium mb-1">Subject</label>
+          <select id="editSubject" class="w-full px-4 py-3 border border-gray-300 rounded-lg">
+            <option>Mathematics</option>
+            <option>English</option>
+            <option>Physics</option>
+            <option>Chemistry</option>
+            <option>Biology</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-1">Question</label>
+          <textarea id="editQuestion" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required></textarea>
+        </div>
+
+        <div class="flex justify-end space-x-4">
+          <button type="button" onclick="document.getElementById('editModal').classList.add('hidden')" class="px-6 py-3 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400">
+            Cancel
+          </button>
+          <button type="submit" class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-pink-700">
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    let questions = JSON.parse(localStorage.getItem('questions')) || [];
+
+    const addForm = document.getElementById('addQuestionForm');
+    const editModal = document.getElementById('editModal');
+    const editForm = document.getElementById('editForm');
+    const questionsList = document.getElementById('questionsList');
+
+    function renderQuestions() {
+      questionsList.innerHTML = '';
+      questions.forEach((q, index) => {
+        const div = document.createElement('div');
+        div.className = 'border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition';
+        div.innerHTML = `
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="font-medium">${q.question}</p>
+              <p class="text-sm text-gray-600 mt-1">${q.subject} • Correct: ${q.correct}</p>
+            </div>
+            <div class="flex space-x-3">
+              <button onclick="editQuestion(${index})" class="text-blue-600 hover:underline text-sm">Edit</button>
+              <button onclick="deleteQuestion(${index})" class="text-red-600 hover:underline text-sm">Delete</button>
+            </div>
+          </div>
+        `;
+        questionsList.appendChild(div);
+      });
+    }
+
+    addForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const newQ = {
+        question: document.getElementById('question').value,
+        subject: document.getElementById('subject').value,
+        correct: document.getElementById('correct').value,
+      };
+      questions.push(newQ);
+      localStorage.setItem('questions', JSON.stringify(questions));
+      renderQuestions();
+      addForm.reset();
+      alert('Question added!');
+    });
+
+    function editQuestion(index) {
+      const q = questions[index];
+      document.getElementById('editIndex').value = index;
+      document.getElementById('editQuestion').value = q.question;
+      document.getElementById('editSubject').value = q.subject;
+      document.getElementById('editCorrect').value = q.correct;
+      editModal.classList.remove('hidden');
+    }
+
+    editForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const index = document.getElementById('editIndex').value;
+      questions[index].question = document.getElementById('editQuestion').value;
+      questions[index].subject = document.getElementById('editSubject').value;
+      questions[index].correct = document.getElementById('editCorrect').value;
+      localStorage.setItem('questions', JSON.stringify(questions));
+      renderQuestions();
+      editModal.classList.add('hidden');
+      alert('Question updated!');
+    });
+
+    function deleteQuestion(index) {
+      if (confirm('Delete this question?')) {
+        questions.splice(index, 1);
+        localStorage.setItem('questions', JSON.stringify(questions));
+        renderQuestions();
+        alert('Deleted!');
+      }
+    }
+
+    renderQuestions(); // initial load
+  </script>
+
+</body>
+</html>

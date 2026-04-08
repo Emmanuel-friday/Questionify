@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+
+@layer utilities {
+  .no-marker::-webkit-details-marker {
+    display: none;
+  }
+  .no-marker::marker {
+    content: none;
+  }
+}

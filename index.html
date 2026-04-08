@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questionify - Ace WAEC, NECO & UTME Anytime</title>
+  <meta name="description"
+    content="Get access to past questions, mock exams, track progress online for WAEC, NECO, UTME." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#e91e63',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-gray-50 text-gray-900 antialiased">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <div class="flex gap-3 items-center text-3xl font-bold text-primary">
+        <img src="/public/image folder/logo.svg" alt="Questionify Logo" class="h-10 w-10" />
+        Questionify
+      </div>
+
+      <div class="hidden md:flex items-center space-x-8 font-medium">
+        <a href="#" class="hover:text-primary transition">Home</a>
+        <a href="#" class="hover:text-primary transition">Courses</a>
+        <a href="contactUs.html" class="hover:text-primary transition">Contact</a>
+        <a href="faq.html" class="hover:text-primary transition">FAQ</a>
+      </div>
+
+      <div class="hidden md:flex items-center space-x-4">
+        <button onclick="window.location.href='signUp.html?tab=login'"
+                class="px-4 py-2 border border-primary text-primary rounded-full font-semibold hover:bg-primary hover:text-white transition">
+          Login
+        </button>
+        <button onclick="window.location.href='signUp.html?tab=register'"
+                class="px-6 py-2 bg-primary text-white rounded-full font-semibold hover:bg-pink-700 transition">
+          Register
+        </button>
+        <button onclick="window.location.href='adminDashboard.html'"
+                class="px-6 py-2 bg-primary text-white rounded-full font-semibold hover:bg-pink-700 transition">
+                ADMIN
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button id="menuBtn" class="md:hidden text-3xl focus:outline-none">☰</button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white px-4 py-6 space-y-4 font-medium shadow-md">
+      <a href="#" class="block hover:text-primary">Home</a>
+      <a href="#" class="block hover:text-primary">Courses</a>
+      <a href="contactUs.html" class="block hover:text-primary">Contact</a>
+      <a href="faq.html" class="block hover:text-primary">FAQ</a>
+      <button onclick="window.location.href='signUp.html'" class="block w-full py-2 border border-primary text-primary rounded-full">
+        Login
+      </button>
+      <button onclick="window.location.href='signUp.html'" class="block w-full py-2 bg-primary text-white rounded-full">
+        Register
+      </button>
+      <button onclick="window.location.href='adminDashboard.html'" 
+              class="block w-full py-2 bg-blue-600 text-white rounded-full">
+        Admin Panel
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative bg-gradient-to-r from-pink-300 to-pink-100 py-24 px-6 overflow-hidden min-h-[600px] flex items-center">
+    <img
+      src="https://thumbs.dreamstime.com/b/focused-young-african-american-businesswoman-student-looking-laptop-holding-book-learning-serious-black-woman-working-144185369.jpg"
+      alt="Focused student preparing for WAEC/NECO/UTME exams online"
+      class="absolute inset-0 w-full h-full object-cover opacity-40" />
+
+    <div class="relative z-10 max-w-5xl mx-auto text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 drop-shadow-lg">
+        Ace WAEC, NECO & UTME
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-800 mb-10 max-w-3xl mx-auto">
+        Learn Anytime, Anywhere. Get past questions, mock exams, track your progress online.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-6">
+        <button class="px-10 py-5 bg-white text-primary font-bold rounded-full shadow-xl hover:shadow-2xl transition text-xl">
+          Get Started Free
+        </button>
+        <button class="px-10 py-5 border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-primary transition text-xl">
+          Try It Now
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-16 px-6 bg-white">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-12">Why Students Choose Us</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Mobile Learning Anytime -->
+        <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center">
+          <img src="https://media.istockphoto.com/id/1342235356/photo/cheerful-african-american-student-girl-using-mobile-phone-standing-outside.jpg?s=612x612&w=0&k=20&c=LDDpAoYC0NN04uLBe-hR9nOus1R0z8Ywjr0coz4G7dQ="
+               alt="Mobile Learning Anytime"
+               class="mx-auto mb-6 w-24 h-24 rounded-full object-cover shadow-md ring-2 ring-pink-200 ring-offset-2" />
+          <h3 class="text-2xl font-bold text-gray-800 mb-3">Mobile Learning Anytime</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Access lessons anytime, anywhere on your phone – seamless mobile learning designed for your schedule.
+          </p>
+        </div>
+
+        <!-- Real Past Questions & Mocks -->
+        <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center">
+          <img src="https://thumbs.dreamstime.com/b/messy-study-table-books-color-pens-light-calculator-student-desk-open-physics-books-highlighted-notes-calculator-381967300.jpg"
+               alt="Past Questions & Mocks"
+               class="mx-auto mb-6 w-24 h-24 rounded-full object-cover shadow-md ring-2 ring-pink-200 ring-offset-2" />
+          <h3 class="text-2xl font-bold text-gray-800 mb-3">Real Past Questions & Mocks</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Timed CBT mocks with actual WAEC/NECO/UTME questions – feel exam-ready fast.
+          </p>
+        </div>
+
+        <!-- Expert Tutors & Solutions -->
+        <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center">
+          <img src="https://img.freepik.com/premium-photo/portrait-african-american-female-tutor-helping-teenage-girl-preparing-school-test-home_236854-37907.jpg?semt=ais_hybrid&w=740&q=80"
+               alt="Expert Tutors & Solutions"
+               class="mx-auto mb-6 w-24 h-24 rounded-full object-cover shadow-md ring-2 ring-pink-200 ring-offset-2" />
+          <h3 class="text-2xl font-bold text-gray-800 mb-3">Expert Tutors & Solutions</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Get clear, step-by-step explanations from qualified tutors for every question – understand concepts deeply and master difficult topics with ease.
+          </p>
+        </div>
+
+        <!-- Realistic Mock Exams -->
+        <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center">
+          <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?auto=format&fit=crop&w=800&q=80"
+               alt="Realistic Mock Exams"
+               class="mx-auto mb-6 w-24 h-24 rounded-full object-cover shadow-md ring-2 ring-pink-200 ring-offset-2" />
+          <h3 class="text-2xl font-bold text-gray-800 mb-3">Realistic Mock Exams</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Experience full timed CBT mock exams that mirror the real WAEC, NECO & UTME interface – build exam stamina, reduce anxiety, and boost confidence.
+          </p>
+        </div>
+
+        <!-- Complete Syllabus Coverage -->
+        <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80"
+               alt="Complete Syllabus Coverage"
+               class="mx-auto mb-6 w-24 h-24 rounded-full object-cover shadow-md ring-2 ring-pink-200 ring-offset-2" />
+          <h3 class="text-2xl font-bold text-gray-800 mb-3">Complete Syllabus Coverage</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Every topic from the official WAEC, NECO & UTME syllabi is fully covered – no gaps, no surprises, so you study exactly what will be tested.
+          </p>
+        </div>
+
+        <!-- Performance Tracking & Insights -->
+        <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center">
+          <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=800&q=80"
+               alt="Performance Tracking and Insights"
+               class="mx-auto mb-6 w-24 h-24 rounded-full object-cover shadow-md ring-2 ring-pink-200 ring-offset-2" />
+          <h3 class="text-2xl font-bold text-gray-800 mb-3">Performance Tracking & Insights</h3>
+          <p class="text-gray-600 leading-relaxed">
+            See your progress in real time with detailed analytics, score trends, and personalized weak-topic recommendations – turn data into better results.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Subjects -->
+  <section class="py-16 px-6 bg-gray-50">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="text-4xl md:text-5xl font-bold mb-12 text-gray-900">
+        Choose Your Subject
+      </h2>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8">
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://img.freepik.com/free-vector/hand-drawn-english-book-background_23-2149483336.jpg?semt=ais_hybrid&w=740&q=80"
+               alt="English Language"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-green-100 to-green-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            English Language
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://media.istockphoto.com/id/1203720475/vector/book-line-icons-set-open-books-dictionary-bible-audio-novel-literature-education-minimal.jpg?s=612x612&w=0&k=20&c=sDKg9DoBJBxZKUVM0K7LCS8f3Ha_GSY5tdFIrmegpas="
+               alt="Literature In English"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-purple-100 to-purple-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Literature In English
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://thumbs.dreamstime.com/b/physics-science-icons-set-classical-mechanics-experiments-equipment-tools-magnet-atom-pendulum-newton-s-laws-simplest-69017016.jpg"
+               alt="Physics"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-indigo-100 to-indigo-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Physics
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://cdn.shopify.com/s/files/1/0801/1012/5396/files/SEOon_unnamed.png?v=1741984629"
+               alt="Yoruba"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-orange-100 to-orange-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Yoruba
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://thumbs.dreamstime.com/b/ancient-scroll-parchment-icon-document-history-knowledge-old-paper-vector-design-generative-ai-unfurling-symbolizing-407004013.jpg"
+               alt="History"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-amber-100 to-amber-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            History
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://www.shutterstock.com/image-vector/democracy-elections-politics-line-icon-600nw-2422135285.jpg"
+               alt="Civic Education"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-blue-100 to-blue-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Civic Education
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://thumbs.dreamstime.com/b/icon-capitol-building-washington-dc-american-congress-black-white-84439726.jpg"
+               alt="Government"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-red-100 to-red-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Government
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://media.istockphoto.com/id/1433038575/vector/pi-icon-for-design-easily-editable.jpg?s=612x612&w=0&k=20&c=x2xtMt7-kwcESPI744AnJ-UronCcVq7bRmCytd-TgFg="
+               alt="Mathematics"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-blue-100 to-blue-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Mathematics
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://www.shutterstock.com/image-vector/lab-test-tube-flask-vector-600nw-2670281709.jpg"
+               alt="Chemistry"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-red-100 to-red-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Chemistry
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://img.freepik.com/free-vector/profit-infographic-with-coins-statistics_603843-2926.jpg"
+               alt="Economics"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-green-100 to-green-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Economics
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://media.istockphoto.com/id/1638492494/vector/farming-and-agriculture-stroked-vector-icon-set.jpg?s=612x612&w=0&k=20&c=p1PrhW-H7pwkDutnMLfwuRvHXY_0lRTUEmwWclfqZ6o="
+               alt="Agricultural Science"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-lime-100 to-lime-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Agricultural Science
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://media.istockphoto.com/id/2188021989/vector/calculator-and-money-icon.jpg?s=612x612&w=0&k=20&c=CyPGa9Br2wryNuf8WMBW7xddzy1xpnqkQ9cwDD_noGE="
+               alt="Financial Accounting"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-yellow-100 to-yellow-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Financial Accounting
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://www.intmath.com/functions-and-graphs/img/domain_and_range_worksheet.png"
+               alt="Further Mathematics"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-blue-100 to-blue-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Further Mathematics
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://static.vecteezy.com/system/resources/thumbnails/051/333/061/small_2x/a-simple-black-icon-of-a-shopping-cart-perfect-for-e-commerce-websites-online-shopping-apps-or-retail-business-graphics-png.png"
+               alt="Commerce"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-cyan-100 to-cyan-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Commerce
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://static.vecteezy.com/system/resources/previews/020/616/093/non_2x/world-globe-earth-single-continuous-line-round-global-map-geography-graphic-icon-simple-one-line-draw-doodle-for-education-concept-isolated-illustration-minimalist-design-on-white-background-vector.jpg"
+               alt="Geography"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-teal-100 to-teal-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Geography
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://thumbs.dreamstime.com/b/illustration-office-supplies-typewriter-30074822.jpg"
+               alt="Office Practice"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-gray-100 to-gray-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Office Practice
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://thumbs.dreamstime.com/b/vector-illustration-megaphone-price-tag-symbolizing-advertising-outline-style-megaphone-advertising-price-tag-351655307.jpg"
+               alt="Marketing"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-pink-100 to-pink-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Marketing
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://www.shutterstock.com/image-vector/calculator-small-icon-set-accounting-260nw-2667578291.jpg"
+               alt="Book Keeping"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-yellow-100 to-yellow-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Book Keeping
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://media.istockphoto.com/id/1094376302/vector/vector-illustration-of-christian-emblem-with-cross-and-holy-bible-religious-community-design.jpg?s=612x612&w=0&k=20&c=oJmdaJevzyByxvvTsFCZUELVAanazwwAxCNcmnksSc0="
+               alt="Christian Religious Studies"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-amber-100 to-amber-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Christian Religious Studies
+          </h4>
+        </div>
+
+        <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="https://www.shutterstock.com/image-vector/set-hand-drawn-biologic-school-icons-260nw-2181737333.jpg"
+               alt="Biology"
+               class="mx-auto mb-4 w-12 h-12 object-contain rounded-full bg-gradient-to-br from-teal-100 to-teal-200 p-2 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+            Biology
+          </h4>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 px-6 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">
+        Frequently Asked Questions
+      </h2>
+
+      <div class="space-y-5">
+        <details class="group bg-gray-50 rounded-2xl shadow-md overflow-hidden transition-all duration-300">
+          <summary class="flex justify-between items-center cursor-pointer p-6 text-lg font-semibold text-gray-800 hover:text-primary transition-colors">
+            <span>How do I register or sign up for classes?</span>
+            <span class="text-2xl font-bold group-open:rotate-180 transition-transform duration-300">+</span>
+          </summary>
+          <div class="px-6 pb-8 pt-4 text-gray-600 leading-relaxed border-t-2 border-gray-300">
+            Simply click the “Get Started” or “Register” button on the homepage, create an account, and choose your preferred subjects or plan.
+          </div>
+        </details>
+
+        <details class="group bg-gray-50 rounded-2xl shadow-md overflow-hidden transition-all duration-300">
+          <summary class="flex justify-between items-center cursor-pointer p-6 text-lg font-semibold text-gray-800 hover:text-primary transition-colors">
+            <span>Are the lessons completely online?</span>
+            <span class="text-2xl font-bold group-open:rotate-180 transition-transform duration-300">+</span>
+          </summary>
+          <div class="px-6 pb-8 pt-4 text-gray-600 leading-relaxed border-t-2 border-gray-300">
+            Yes, all lessons, quizzes, and mock exams are 100% online. You can learn from anywhere using your phone, tablet, or computer.
+          </div>
+        </details>
+
+        <details class="group bg-gray-50 rounded-2xl shadow-md overflow-hidden transition-all duration-300">
+          <summary class="flex justify-between items-center cursor-pointer p-6 text-lg font-semibold text-gray-800 hover:text-primary transition-colors">
+            <span>What exams do you prepare students for?</span>
+            <span class="text-2xl font-bold group-open:rotate-180 transition-transform duration-300">+</span>
+          </summary>
+          <div class="px-6 pb-8 pt-4 text-gray-600 leading-relaxed border-t-2 border-gray-300">
+            We offer structured lessons and mock exams for WAEC, NECO, BECE, and UTME. Our materials follow the official syllabuses.
+          </div>
+        </details>
+
+        <details class="group bg-gray-50 rounded-2xl shadow-md overflow-hidden transition-all duration-300">
+          <summary class="flex justify-between items-center cursor-pointer p-6 text-lg font-semibold text-gray-800 hover:text-primary transition-colors">
+            <span>What are the available subjects on the platform?</span>
+            <span class="text-2xl font-bold group-open:rotate-180 transition-transform duration-300">+</span>
+          </summary>
+          <div class="px-6 pb-8 pt-4 text-gray-600 leading-relaxed border-t-2 border-gray-300">
+            We cover all core and elective subjects for each exam — including Mathematics, English, Biology, Literature, Government, Physics, Chemistry, and more.
+          </div>
+        </details>
+
+        <details class="group bg-gray-50 rounded-2xl shadow-md overflow-hidden transition-all duration-300">
+          <summary class="flex justify-between items-center cursor-pointer p-6 text-lg font-semibold text-gray-800 hover:text-primary transition-colors">
+            <span>Do you follow the WAEC/NECO/UTME syllabus?</span>
+            <span class="text-2xl font-bold group-open:rotate-180 transition-transform duration-300">+</span>
+          </summary>
+          <div class="px-6 pb-8 pt-4 text-gray-600 leading-relaxed border-t-2 border-gray-300">
+            Yes, all our lessons and practice questions are carefully aligned with the official exam bodies’ syllabus for each subject.
+          </div>
+        </details>
+
+        <details class="group bg-gray-50 rounded-2xl shadow-md overflow-hidden transition-all duration-300">
+          <summary class="flex justify-between items-center cursor-pointer p-6 text-lg font-semibold text-gray-800 hover:text-primary transition-colors">
+            <span>Are past questions and mock exams included?</span>
+            <span class="text-2xl font-bold group-open:rotate-180 transition-transform duration-300">+</span>
+          </summary>
+          <div class="px-6 pb-8 pt-4 text-gray-600 leading-relaxed border-t-2 border-gray-300">
+            Absolutely! You’ll get access to thousands of past questions, timed mock exams, and instant feedback with answers and explanations.
+          </div>
+        </details>
+
+        <details class="group bg-gray-50 rounded-2xl shadow-md overflow-hidden transition-all duration-300">
+          <summary class="flex justify-between items-center cursor-pointer p-6 text-lg font-semibold text-gray-800 hover:text-primary transition-colors">
+            <span>What are your pricing plans?</span>
+            <span class="text-2xl font-bold group-open:rotate-180 transition-transform duration-300">+</span>
+          </summary>
+          <div class="px-6 pb-8 pt-4 text-gray-600 leading-relaxed border-t-2 border-gray-300">
+            We offer both free and paid plans. Paid users get full access to premium lessons, mock exams, progress tracking, and tutor support.
+          </div>
+        </details>
+
+        <details class="group bg-gray-50 rounded-2xl shadow-md overflow-hidden transition-all duration-300">
+          <summary class="flex justify-between items-center cursor-pointer p-6 text-lg font-semibold text-gray-800 hover:text-primary transition-colors">
+            <span>Do you offer free trial?</span>
+            <span class="text-2xl font-bold group-open:rotate-180 transition-transform duration-300">+</span>
+          </summary>
+          <div class="px-6 pb-8 pt-4 text-gray-600 leading-relaxed border-t-2 border-gray-300">
+            Yes! New users can explore selected lessons and quizzes for free before choosing a paid plan.
+          </div>
+        </details>
+
+        <details class="group bg-gray-50 rounded-2xl shadow-md overflow-hidden transition-all duration-300">
+          <summary class="flex justify-between items-center cursor-pointer p-6 text-lg font-semibold text-gray-800 hover:text-primary transition-colors">
+            <span>Can I access on my phone?</span>
+            <span class="text-2xl font-bold group-open:rotate-180 transition-transform duration-300">+</span>
+          </summary>
+          <div class="px-6 pb-8 pt-4 text-gray-600 leading-relaxed border-t-2 border-gray-300">
+            Yes — our platform is mobile-friendly. You can study anytime using a smartphone, tablet, or computer with internet access.
+          </div>
+        </details>
+
+        <details class="group bg-gray-50 rounded-2xl shadow-md overflow-hidden transition-all duration-300">
+          <summary class="flex justify-between items-center cursor-pointer p-6 text-lg font-semibold text-gray-800 hover:text-primary transition-colors">
+            <span>How can I track my performance?</span>
+            <span class="text-2xl font-bold group-open:rotate-180 transition-transform duration-300">+</span>
+          </summary>
+          <div class="px-6 pb-8 pt-4 text-gray-600 leading-relaxed border-t-2 border-gray-300">
+            Your dashboard will show your scores, strengths, and weak areas for each subject, helping you improve with every session.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 text-center">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-wrap justify-center gap-6 mb-6">
+        <a href="#" class="hover:text-primary">Home</a>
+        <a href="#" class="hover:text-primary">Courses</a>
+        <a href="#" class="hover:text-primary">Pricing</a>
+        <a href="contactUs.html" class="hover:text-primary">Contact</a>
+        <a href="faq.html" class="hover:text-primary">FAQ</a>
+      </div>
+      <p class="mb-4">Facebook | WhatsApp | Instagram | YouTube</p>
+      <p>&copy; 2025 Questionify. Built in Lagos with ❤️</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu Toggle -->
+  <script>
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+
+</html>
