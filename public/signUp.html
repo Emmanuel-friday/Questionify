@@ -190,7 +190,11 @@
 
         try {
           // Fetch all users from HiSend table
-          const res = await fetch(`${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`);
+          const res = await fetch(`${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`,{
+  method: "POST",
+  body: JSON.stringify({ email: email, password: password }),
+  // …
+});
           const result = await res.json();
 
           const users = result.data?.data || [];
@@ -262,7 +266,7 @@
 
           const result = await res.json();
 
-          console.log(result); // helps debug
+          console.log(result); 
 
           const users = result.data?.data || [];
 
@@ -329,10 +333,6 @@
         }
       });
 
-
-      // ====================== REST OF YOUR CODE (unchanged) ======================
-      // Login, Register OTP, Verify, etc. (same as last version)
-      // ... (I kept the full working register flow with your exact columns)
 
       document.getElementById("registerFormStep1").addEventListener("submit", async (e) => {
         e.preventDefault();
