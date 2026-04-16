@@ -180,103 +180,114 @@
       document.getElementById("loginForm").addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value.trim();
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
 
-        const res = await fetch(
-          `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`,
-          { method: "GET" }
-        );
-
-        const result = await res.json();
-        const users = result.data?.data || [];
-
-        console.log(users);
-
-        const foundUser = users.find(user =>
-          user.fields?.email?.toLowerCase() === email.toLowerCase() &&
-          user.fields?.password === password
-        );
-
-        if (foundUser) {
-          alert("Login successful ✅");
-          localStorage.setItem("auth_token", foundUser.id);
-          window.location.href = "public/dashboard.html";
-        } else {
-          alert("Invalid email or password ❌");
-        }
-
-
-
-        document.getElementById("registerFormStep1").addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const name = document.getElementById("registerName").value.trim();
-          const email = document.getElementById("registerEmail").value.trim();
-          const identifier = document.getElementById("registerPhone").value.trim();
-          const password = document.getElementById("registerPassword").value;
-          const confirm = document.getElementById("registerConfirmPassword").value;
-
-          if (password !== confirm) return alert("Passwords don't match");
-
-          currentEmail = identifier;
-
-          try {
-            const res = await fetch(`${BASE_URL}/otp/send?customer_identifier=${encodeURIComponent(identifier)}&channel=email&api_key=${API_KEY}`);
-            const data = await res.json();
-
-            if (data.data?.reference) {
-              currentReference = data.data.reference;
-              document.getElementById("registerStep1").classList.add("hidden");
-              document.getElementById("registerStep2").classList.remove("hidden");
-              document.getElementById("otpMessage").innerHTML = `OTP sent to ${identifier}! Check email/spam`;
-              document.getElementById("otpMessage").className = "text-center text-sm text-green-600";
+        try {
+          const res = await fetch(
+            `${BASE_URL}/projects/${PROJECT_ID}/auth/login?api_key=${API_KEY}`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                email: email,
+                password: password
+              })
             }
-          } catch (err) { console.error(err); }
-        });
+          );
 
-        document.getElementById("verifyOtpBtn").addEventListener("click", async () => {
-          const otp = document.getElementById("otpInput").value.trim();
-          if (otp.length !== 6) return alert("Enter 6-digit OTP");
+          const data = await res.json();
+          console.log(data); // 🔍 VERY IMPORTANT
 
-          try {
-            const valRes = await fetch(`${BASE_URL}/otp/validate?reference=${currentReference}&otp=${otp}&api_key=${API_KEY}`);
-            const valData = await valRes.json();
+          if (res.ok && data.data) {
+            alert("Login successful ✅");
 
-            if (valData.data?.success) {
-              const name = document.getElementById("registerName").value.trim();
-              const email = document.getElementById("registerEmail").value.trim();
-              const password = document.getElementById("registerPassword").value;
+            // Save token or user info
+            localStorage.setItem("auth_token", data.data.token || data.data.id);
 
-              const regRes = await fetch(
-                `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`,
-                {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    phone_number: currentEmail,
-                    user_password: password
-                  })
-                }
-              );
-
-              if (regRes.ok) {
-                alert("Account created & verified! 🎉 Redirecting...");
-                window.location.href = "public/dashboard.html";
-              } else {
-                alert("Registration failed – check console");
-              }
-            }
-          } catch (err) {
-            console.error(err);
+            window.location.href = "public/dashboard.html";
+          } else {
+            alert(data.message || "Invalid email or password ❌");
           }
-        });
 
-        document.getElementById("resendOtpBtn").addEventListener("click", () => {
-          document.getElementById("registerFormStep1").dispatchEvent(new Event("submit"));
-        });
+        } catch (err) {
+          console.error("Login error:", err);
+          alert("Something went wrong ❌");
+        }
       });
+
+
+      document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const name = document.getElementById("registerName").value.trim();
+        const email = document.getElementById("registerEmail").value.trim();
+        const identifier = document.getElementById("registerPhone").value.trim();
+        const password = document.getElementById("registerPassword").value;
+        const confirm = document.getElementById("registerConfirmPassword").value;
+
+        if (password !== confirm) return alert("Passwords don't match");
+
+        currentEmail = identifier;
+
+        try {
+          const res = await fetch(`${BASE_URL}/otp/send?customer_identifier=${encodeURIComponent(identifier)}&channel=email&api_key=${API_KEY}`);
+          const data = await res.json();
+
+          if (data.data?.reference) {
+            currentReference = data.data.reference;
+            document.getElementById("registerStep1").classList.add("hidden");
+            document.getElementById("registerStep2").classList.remove("hidden");
+            document.getElementById("otpMessage").innerHTML = `OTP sent to ${identifier}! Check email/spam`;
+            document.getElementById("otpMessage").className = "text-center text-sm text-green-600";
+          }
+        } catch (err) { console.error(err); }
+      });
+
+      document.getElementById("verifyOtpBtn").addEventListener("click", async () => {
+        const otp = document.getElementById("otpInput").value.trim();
+        if (otp.length !== 6) return alert("Enter 6-digit OTP");
+
+        try {
+          const valRes = await fetch(`${BASE_URL}/otp/validate?reference=${currentReference}&otp=${otp}&api_key=${API_KEY}`);
+          const valData = await valRes.json();
+
+          if (valData.data?.success) {
+            const name = document.getElementById("registerName").value.trim();
+            const email = document.getElementById("registerEmail").value.trim();
+            const password = document.getElementById("registerPassword").value;
+
+            const regRes = await fetch(
+              `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  name: name,
+                  email: email,
+                  phone_number: currentEmail,
+                  user_password: password
+                })
+              }
+            );
+
+            if (regRes.ok) {
+              alert("Account created & verified! 🎉 Redirecting...");
+              window.location.href = "public/dashboard.html";
+            } else {
+              alert("Registration failed – check console");
+            }
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      });
+
+      document.getElementById("resendOtpBtn").addEventListener("click", () => {
+        document.getElementById("registerFormStep1").dispatchEvent(new Event("submit"));
+      });
+    });
   </script>
 </body>
 
