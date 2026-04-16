@@ -189,150 +189,43 @@
         }
 
         try {
-          // Fetch all users from HiSend table
-          const res = await fetch(`${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`,{
-  method: "POST",
-  body: JSON.stringify({ email: 'email', password: 'password' }),
-  // …
-});
+          // Correct way to fetch all records from Hisend
+          const res = await fetch(
+            `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json"
+              }
+            }
+          );
+
+          if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
+          }
+
           const result = await res.json();
+          const users = result.data?.data || result.data || [];
 
-          const users = result.data?.data || [];
-
-          // Find the user by email & password
+          // Find the user by email & password (matching your DB columns)
           const foundUser = users.find(user =>
-            user.fields?.email === email &&
+            user.fields?.email?.toLowerCase() === email.toLowerCase() &&
             user.fields?.user_password === password
           );
 
           if (foundUser) {
             alert("Login successful ✅");
-            localStorage.setItem("auth_token", foundUser.id); // save token/user id
-            window.location.href = "dashboard.html"; // redirect
+            localStorage.setItem("auth_token", foundUser.id || foundUser.record_id);
+            window.location.href = "dashboard.html";
           } else {
             alert("Invalid email or password ❌");
           }
 
         } catch (err) {
           console.error("Login error:", err);
-          alert("Login failed. Check console for details.");
+          alert("Login failed. Please check your internet or try again.");
         }
       });
-
-      // document.getElementById("loginForm").addEventListener("submit", async (e) => {
-      //   e.preventDefault();
-
-      //   const email = document.getElementById("loginEmail").value.trim();
-      //   const password = document.getElementById("loginPassword").value;
-
-      //   try {
-
-      //     const res = await fetch(
-      //       `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`
-      //     );
-
-      //     const data = await res.json();
-
-      //     const users = data.data?.data || [];
-
-      //     const foundUser = users.find(
-      //       user => user.email === email && user.user_password === password
-      //     );
-
-      //     if (foundUser) {
-      //       window.location.href = "dashboard.html";
-      //     } else {
-      //       alert("Invalid email or password");
-      //     }
-
-      //   } catch (err) {
-      //     console.error(err);
-      //     alert("Login error");
-      //   }
-      // });
-
-      // // ====================== LOGIN CHECK ======================
-      // document.getElementById("loginForm").addEventListener("submit", async (e) => {
-      //   e.preventDefault();
-
-      //   const email = document.getElementById("loginEmail").value.trim();
-      //   const password = document.getElementById("loginPassword").value.trim();
-
-      //   try {
-
-      //     const res = await fetch(
-      //       `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`
-      //     );
-
-      //     const result = await res.json();
-
-      //     console.log(result); 
-
-      //     const users = result.data?.data || [];
-
-      //     const foundUser = users.find(user =>
-      //       user.email === email && user.user_password === password
-      //     );
-
-      //     if (foundUser) {
-
-      //       alert("Login successful ✅");
-      //       window.location.href = "dashboard.html";
-
-      //     } else {
-
-      //       alert("Invalid email or password ❌");
-
-      //     }
-
-      //   } catch (error) {
-
-      //     console.error(error);
-      //     alert("Login failed. Check console.");
-
-      //   }
-      // });
-
-      // document.getElementById("loginForm").addEventListener("submit", async (e) => {
-      //   e.preventDefault();
-
-      //   const email = document.getElementById("loginEmail").value.trim();
-      //   const password = document.getElementById("loginPassword").value.trim();
-
-      //   try {
-
-      //     const res = await fetch(
-      //       `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`
-      //     );
-
-      //     const result = await res.json();
-
-      //     const users = result.data?.data || [];
-
-      //     const foundUser = users.find(user =>
-      //       user.fields?.email === email &&
-      //       user.fields?.user_password === password
-      //     );
-
-      //     if (foundUser) {
-
-      //       alert("Login successful ✅");
-      //       window.location.href = "dashboard.html";
-
-      //     } else {
-
-      //       alert("Invalid email or password ❌");
-
-      //     }
-
-      //   } catch (error) {
-
-      //     console.error(error);
-      //     alert("Login error");
-
-      //   }
-      // });
-
 
       document.getElementById("registerFormStep1").addEventListener("submit", async (e) => {
         e.preventDefault();
