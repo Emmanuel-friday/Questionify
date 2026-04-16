@@ -201,7 +201,7 @@
         if (foundUser) {
           alert("Login successful ✅");
           localStorage.setItem("auth_token", foundUser.id);
-          window.location.href = "dashboard.html";
+          window.location.href = "public/dashboard.html";
         } else {
           alert("Invalid email or password ❌");
         }
@@ -263,7 +263,7 @@
 
               if (regRes.ok) {
                 alert("Account created & verified! 🎉 Redirecting...");
-                window.location.href = "dashboard.html";
+                window.location.href = "public/dashboard.html";
               } else {
                 alert("Registration failed – check console");
               }
