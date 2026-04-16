@@ -188,108 +188,102 @@
           return;
         }
 
-        try {
-          // Fetch all users from HiSend table
-          const res = await fetch(`${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`, {
-            method: "POST",
-            body: JSON.stringify({ email: 'email', password: 'password' }),
-            // …
-          });
-          const result = await res.json();
-
-          const users = result.data || [];
-
-          // Find the user by email & password
-          const foundUser = users.find(user =>
-            user.fields?.email === email &&
-            user.fields?.user_password === password
-          );
-
-          if (foundUser) {
-            alert("Login successful ✅");
-            localStorage.setItem("auth_token", foundUser.id); // save token/user id
-            window.location.href = "dashboard.html"; // redirect
-          } else {
-            alert("Invalid email or password ❌");
+        const res = await fetch(
+          `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`,
+          {
+            method: "GET"
           }
+        );
 
-        } catch (err) {
-          console.error("Login error:", err);
-          alert("Login failed. Check console for details.");
+        const result = await res.json();
+        const users = result.data?.data || [];
+
+        console.log(users); // debug
+
+        const foundUser = users.find(user =>
+          user.fields?.email === email &&
+          user.fields?.password === password
+        );
+
+        if (foundUser) {
+          alert("Login successful ✅");
+          localStorage.setItem("auth_token", foundUser.id);
+          window.location.href = "dashboard.html";
+        } else {
+          alert("Invalid email or password ❌");
         }
-      });
 
 
 
-      document.getElementById("registerFormStep1").addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const name = document.getElementById("registerName").value.trim();
-        const email = document.getElementById("registerEmail").value.trim();
-        const identifier = document.getElementById("registerPhone").value.trim();
-        const password = document.getElementById("registerPassword").value;
-        const confirm = document.getElementById("registerConfirmPassword").value;
+        document.getElementById("registerFormStep1").addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const name = document.getElementById("registerName").value.trim();
+          const email = document.getElementById("registerEmail").value.trim();
+          const identifier = document.getElementById("registerPhone").value.trim();
+          const password = document.getElementById("registerPassword").value;
+          const confirm = document.getElementById("registerConfirmPassword").value;
 
-        if (password !== confirm) return alert("Passwords don't match");
+          if (password !== confirm) return alert("Passwords don't match");
 
-        currentEmail = identifier;
+          currentEmail = identifier;
 
-        try {
-          const res = await fetch(`${BASE_URL}/otp/send?customer_identifier=${encodeURIComponent(identifier)}&channel=email&api_key=${API_KEY}`);
-          const data = await res.json();
+          try {
+            const res = await fetch(`${BASE_URL}/otp/send?customer_identifier=${encodeURIComponent(identifier)}&channel=email&api_key=${API_KEY}`);
+            const data = await res.json();
 
-          if (data.data?.reference) {
-            currentReference = data.data.reference;
-            document.getElementById("registerStep1").classList.add("hidden");
-            document.getElementById("registerStep2").classList.remove("hidden");
-            document.getElementById("otpMessage").innerHTML = `OTP sent to ${identifier}! Check email/spam`;
-            document.getElementById("otpMessage").className = "text-center text-sm text-green-600";
-          }
-        } catch (err) { console.error(err); }
-      });
-
-      document.getElementById("verifyOtpBtn").addEventListener("click", async () => {
-        const otp = document.getElementById("otpInput").value.trim();
-        if (otp.length !== 6) return alert("Enter 6-digit OTP");
-
-        try {
-          const valRes = await fetch(`${BASE_URL}/otp/validate?reference=${currentReference}&otp=${otp}&api_key=${API_KEY}`);
-          const valData = await valRes.json();
-
-          if (valData.data?.success) {
-            const name = document.getElementById("registerName").value.trim();
-            const email = document.getElementById("registerEmail").value.trim();
-            const password = document.getElementById("registerPassword").value;
-
-            const regRes = await fetch(
-              `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`,
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  name: name,
-                  email: email,
-                  phone_number: currentEmail,
-                  user_password: password
-                })
-              }
-            );
-
-            if (regRes.ok) {
-              alert("Account created & verified! 🎉 Redirecting...");
-              window.location.href = "dashboard.html";
-            } else {
-              alert("Registration failed – check console");
+            if (data.data?.reference) {
+              currentReference = data.data.reference;
+              document.getElementById("registerStep1").classList.add("hidden");
+              document.getElementById("registerStep2").classList.remove("hidden");
+              document.getElementById("otpMessage").innerHTML = `OTP sent to ${identifier}! Check email/spam`;
+              document.getElementById("otpMessage").className = "text-center text-sm text-green-600";
             }
-          }
-        } catch (err) {
-          console.error(err);
-        }
-      });
+          } catch (err) { console.error(err); }
+        });
 
-      document.getElementById("resendOtpBtn").addEventListener("click", () => {
-        document.getElementById("registerFormStep1").dispatchEvent(new Event("submit"));
+        document.getElementById("verifyOtpBtn").addEventListener("click", async () => {
+          const otp = document.getElementById("otpInput").value.trim();
+          if (otp.length !== 6) return alert("Enter 6-digit OTP");
+
+          try {
+            const valRes = await fetch(`${BASE_URL}/otp/validate?reference=${currentReference}&otp=${otp}&api_key=${API_KEY}`);
+            const valData = await valRes.json();
+
+            if (valData.data?.success) {
+              const name = document.getElementById("registerName").value.trim();
+              const email = document.getElementById("registerEmail").value.trim();
+              const password = document.getElementById("registerPassword").value;
+
+              const regRes = await fetch(
+                `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`,
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    phone_number: currentEmail,
+                    user_password: password
+                  })
+                }
+              );
+
+              if (regRes.ok) {
+                alert("Account created & verified! 🎉 Redirecting...");
+                window.location.href = "dashboard.html";
+              } else {
+                alert("Registration failed – check console");
+              }
+            }
+          } catch (err) {
+            console.error(err);
+          }
+        });
+
+        document.getElementById("resendOtpBtn").addEventListener("click", () => {
+          document.getElementById("registerFormStep1").dispatchEvent(new Event("submit"));
+        });
       });
-    });
   </script>
 </body>
 
