@@ -137,158 +137,69 @@
     </div>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const API_KEY = "4whxTesomK1gZ5cBq9Hk8OIy";
-      const PROJECT_ID = "01jttgwp4nq5n4az3f3gc4hry1";
-      const BASE_URL = "https://core.hisend.hunnovate.com/api/v1";
-      const TABLE_ID = "questionify_users";
+<script>
+document.addEventListener('DOMContentLoaded', () => {
 
-      let currentReference = "";
-      let currentEmail = "";
+  const API_KEY = "4whxTesomK1gZ5cBq9Hk8OIy";
+  const PROJECT_ID = "01jttgwp4nq5n4az3f3gc4hry1";
+  const BASE_URL = "https://core.hisend.hunnovate.com/api/v1";
 
-      // ====================== TAB SWITCHING (FIXED) ======================
-      function showTab(tab) {
-        const loginTab = document.getElementById('loginTab');
-        const registerTab = document.getElementById('registerTab');
-        const loginContent = document.getElementById('login-content');
-        const registerContent = document.getElementById('register-content');
-        const footer = document.getElementById('authFooter');
+  // ================= LOGIN =================
+  document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-        loginTab.classList.toggle('bg-primary', tab === 'login');
-        loginTab.classList.toggle('text-white', tab === 'login');
-        registerTab.classList.toggle('bg-primary', tab === 'register');
-        registerTab.classList.toggle('text-white', tab === 'register');
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
 
-        loginContent.classList.toggle('hidden', tab !== 'login');
-        registerContent.classList.toggle('hidden', tab !== 'register');
+    try {
+      const res = await fetch(
+        `${BASE_URL}/projects/${PROJECT_ID}/auth/login?api_key=${API_KEY}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            identifier: email,   // ✅ VERY IMPORTANT (NOT "email")
+            password: password
+          })
+        }
+      );
 
-        footer.innerHTML = tab === 'login'
-          ? `Don't have an account? <button onclick="showTab('register')" class="text-primary font-medium hover:underline cursor-pointer">Register</button>`
-          : `Already have an account? <button onclick="showTab('login')" class="text-primary font-medium hover:underline cursor-pointer">Login</button>`;
+      // 👇 Handle non-JSON (like your HTML error)
+      const text = await res.text();
+
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        console.error("Server returned HTML instead of JSON:", text);
+        alert("Server error ❌ (check console)");
+        return;
       }
 
-      // Make tabs clickable
-      document.getElementById('loginTab').addEventListener('click', () => showTab('login'));
-      document.getElementById('registerTab').addEventListener('click', () => showTab('register'));
+      console.log("LOGIN RESPONSE:", data);
 
-      showTab('login'); // start on login
+      if (res.ok && data.data) {
+        alert("Login successful ✅");
 
-      // ====================== LOGIN CHECK ======================
+        // Save token
+        localStorage.setItem("auth_token", data.data.token || data.data.id);
 
-      // Attach login to form submit
-      document.getElementById("loginForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
+        window.location.href = "public/dashboard.html";
+      } else {
+        alert(data.message || "Invalid login ❌");
+      }
 
-        const email = document.getElementById("loginEmail").value.trim();
-        const password = document.getElementById("loginPassword").value.trim();
+    } catch (err) {
+      console.error("Login error:", err);
+      alert("Network error ❌");
+    }
+  });
 
-        try {
-          const res = await fetch(
-            `${BASE_URL}/projects/${PROJECT_ID}/auth/login?api_key=${API_KEY}`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({
-                email: email,
-                password: password
-              })
-            }
-          );
-
-          const data = await res.json();
-          console.log(data); // 🔍 VERY IMPORTANT
-
-          if (res.ok && data.data) {
-            alert("Login successful ✅");
-
-            // Save token or user info
-            localStorage.setItem("auth_token", data.data.token || data.data.id);
-
-            window.location.href = "public/dashboard.html";
-          } else {
-            alert(data.message || "Invalid email or password ❌");
-          }
-
-        } catch (err) {
-          console.error("Login error:", err);
-          alert("Something went wrong ❌");
-        }
-      });
-
-
-      document.getElementById("loginForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const name = document.getElementById("registerName").value.trim();
-        const email = document.getElementById("registerEmail").value.trim();
-        const identifier = document.getElementById("registerPhone").value.trim();
-        const password = document.getElementById("registerPassword").value;
-        const confirm = document.getElementById("registerConfirmPassword").value;
-
-        if (password !== confirm) return alert("Passwords don't match");
-
-        currentEmail = identifier;
-
-        try {
-          const res = await fetch(`${BASE_URL}/otp/send?customer_identifier=${encodeURIComponent(identifier)}&channel=email&api_key=${API_KEY}`);
-          const data = await res.json();
-
-          if (data.data?.reference) {
-            currentReference = data.data.reference;
-            document.getElementById("registerStep1").classList.add("hidden");
-            document.getElementById("registerStep2").classList.remove("hidden");
-            document.getElementById("otpMessage").innerHTML = `OTP sent to ${identifier}! Check email/spam`;
-            document.getElementById("otpMessage").className = "text-center text-sm text-green-600";
-          }
-        } catch (err) { console.error(err); }
-      });
-
-      document.getElementById("verifyOtpBtn").addEventListener("click", async () => {
-        const otp = document.getElementById("otpInput").value.trim();
-        if (otp.length !== 6) return alert("Enter 6-digit OTP");
-
-        try {
-          const valRes = await fetch(`${BASE_URL}/otp/validate?reference=${currentReference}&otp=${otp}&api_key=${API_KEY}`);
-          const valData = await valRes.json();
-
-          if (valData.data?.success) {
-            const name = document.getElementById("registerName").value.trim();
-            const email = document.getElementById("registerEmail").value.trim();
-            const password = document.getElementById("registerPassword").value;
-
-            const regRes = await fetch(
-              `${BASE_URL}/projects/${PROJECT_ID}/tables/${TABLE_ID}/records?api_key=${API_KEY}`,
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  name: name,
-                  email: email,
-                  phone_number: currentEmail,
-                  user_password: password
-                })
-              }
-            );
-
-            if (regRes.ok) {
-              alert("Account created & verified! 🎉 Redirecting...");
-              window.location.href = "public/dashboard.html";
-            } else {
-              alert("Registration failed – check console");
-            }
-          }
-        } catch (err) {
-          console.error(err);
-        }
-      });
-
-      document.getElementById("resendOtpBtn").addEventListener("click", () => {
-        document.getElementById("registerFormStep1").dispatchEvent(new Event("submit"));
-      });
-    });
-  </script>
+});
+</script>
 </body>
 
 </html>
