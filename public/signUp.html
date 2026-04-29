@@ -5,15 +5,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login / Register - Questionify</title>
+
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = { theme: { extend: { colors: { primary: '#e91e63' } } } }
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#e91e63'
+          }
+        }
+      }
+    }
   </script>
 </head>
 
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4 md:p-8">
 
-  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden relative">
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden">
 
     <!-- Back Button -->
     <button onclick="history.back()"
@@ -21,50 +31,63 @@
       ← Back
     </button>
 
-    <div class="flex border-b border-gray-200 gap-2 items-center md:mt-14">
+    <!-- Tabs: Login & Register -->
+    <div class="flex border-b border-gray-200">
       <button id="loginTab"
-        class="text-lg rounded-[10px] font-semibold ml-7 h-[50px] w-[50%] text-gray-600 focus:outline-none transition-colors cursor-pointer group">Login</button>
+        class="flex-1 py-4 mt-5 ml-5 rounded-2xl text-lg font-semibold text-gray-600 hover:text-gray-900 transition-colors">
+        Login
+      </button>
       <button id="registerTab"
-        class="text-lg rounded-[10px] font-semibold mr-7 h-[50px] w-[50%] text-gray-600 focus:outline-none transition-colors cursor-pointer group">Register</button>
+        class="flex-1 py-4 mt-5 mr-5 rounded-2xl text-lg font-semibold text-gray-600 hover:text-gray-900 transition-colors">
+        Register
+      </button>
     </div>
 
-    <div class="p-8 pt-6">
-      <!-- Login Form -->
+    <div class="p-8">
+
+      <!-- ====================== LOGIN FORM ====================== -->
       <div id="login-content">
         <form id="loginForm" class="space-y-6">
+
           <div>
             <label for="loginEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <input type="email" id="loginEmail"
               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
               placeholder="you@example.com" required />
           </div>
+
           <div>
             <label for="loginPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
             <input type="password" id="loginPassword"
               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
               placeholder="••••••••" required />
           </div>
-          <div class="flex items-center justify-between">
+
+          <div class="flex items-center justify-between text-sm">
             <div class="flex items-center">
               <input type="checkbox" id="remember"
                 class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded" />
-              <label for="remember" class="ml-2 block text-sm text-gray-700">Remember me</label>
+              <label for="remember" class="ml-2 text-gray-700">Remember me</label>
             </div>
-            <a href="#" class="text-sm text-primary hover:underline">Forgot password?</a>
+            <a href="#" class="text-primary hover:underline">Forgot password?</a>
           </div>
+
           <button type="submit"
-            class="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-pink-700 transition">Sign
-            In</button>
+            class="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-pink-700 transition">
+            Sign In
+          </button>
+
           <div class="text-center text-sm text-gray-500">Or continue with</div>
+
           <div class="grid grid-cols-2 gap-4">
             <button type="button"
-              class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition cursor-pointer shadow-sm">
+              class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
               <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google"
                 class="w-6 h-6 mr-3" />
               <span class="text-gray-700 font-medium">Google</span>
             </button>
             <button type="button"
-              class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition cursor-pointer shadow-sm">
+              class="flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
               <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple"
                 class="w-6 h-6 mr-3" />
               <span class="text-gray-700 font-medium">Apple</span>
@@ -73,133 +96,241 @@
         </form>
       </div>
 
-      <!-- Register Form -->
+      <!-- ====================== REGISTER FORM ====================== -->
       <div id="register-content" class="hidden">
+
+        <!-- Step 1: Registration Details -->
         <div id="registerStep1">
           <form id="registerFormStep1" class="space-y-6">
+
             <div>
-              <label for="registerName" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-              <input type="text" id="registerName"
+              <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+              <input type="text" name="first_name" id="first_name"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
-                placeholder="Your Full Name" required />
+                placeholder="Your First Name" required />
             </div>
+
             <div>
-              <label for="registerEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-              <input type="email" id="registerEmail"
+              <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+              <input type="text" name="last_name" id="last_name"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
-                placeholder="you@example.com" required />
+                placeholder="Your Last Name" required />
             </div>
+
             <div>
-              <label for="registerPhone" class="block text-sm font-medium text-gray-700 mb-1">Email for OTP (free
-                test)</label>
-              <input type="email" id="registerPhone"
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+              <input type="tel" id="phone" name="phone" inputmode="numeric" pattern="[0-9]*" maxlength="15"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
+                placeholder="08012345678" required />
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <input type="email" name="email" id="email"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
                 placeholder="your.email@gmail.com" required />
             </div>
+
+            <!-- Gender Selection -->
             <div>
-              <label for="registerPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-              <input type="password" id="registerPassword"
+              <label class="block text-sm font-medium text-gray-700 mb-2">Gender <span
+                  class="text-red-500">*</span></label>
+              <div class="flex gap-6">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="gender" value="male" required>
+                  <span>Male</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="gender" value="female" required>
+                  <span>Female</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="gender" value="prefer_nbot_to_say">
+                  <span>Prefer not to say</span>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              <input type="password" name="password" id="password"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
                 placeholder="••••••••" required minlength="6" />
             </div>
+
             <div>
-              <label for="registerConfirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirm
+              <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-1">Confirm
                 Password</label>
-              <input type="password" id="registerConfirmPassword"
+              <input type="password" name="password_confirmation" id="password_confirmation"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
                 placeholder="••••••••" required />
             </div>
+
             <button type="submit"
-              class="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-pink-700 transition">Send OTP &
-              Continue</button>
+              class="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-pink-700 transition">
+              Send OTP & Continue
+            </button>
           </form>
         </div>
 
-        <div id="registerStep2" class="hidden space-y-6">
+        <!-- Step 2: OTP Verification -->
+        <!-- <div id="registerStep2" class="hidden space-y-6">
           <h3 class="text-lg font-semibold text-center">Enter OTP</h3>
-          <p class="text-sm text-gray-600 text-center">Check your email (including spam)</p>
+          <p class="text-sm text-gray-600 text-center">Check your email (including spam folder)</p>
+
           <input type="text" id="otpInput" maxlength="6"
             class="w-full px-4 py-3 border border-gray-300 rounded-lg text-center text-2xl tracking-widest focus:ring-2 focus:ring-primary focus:border-primary outline-none"
             placeholder="------" required />
+
           <button id="verifyOtpBtn"
-            class="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-pink-700 transition">Verify
-            OTP</button>
-          <button id="resendOtpBtn" class="w-full py-2 text-primary font-medium hover:underline">Resend OTP</button>
+            class="w-full py-3 bg-primary text-white font-semibold rounded-lg hover:bg-pink-700 transition">
+            Verify OTP
+          </button>
+
+          <button id="resendOtpBtn" class="w-full py-2 text-primary font-medium hover:underline">
+            Resend OTP
+          </button>
+
           <p id="otpMessage" class="text-center text-sm font-medium"></p>
-        </div>
+        </div> -->
+
       </div>
     </div>
 
+    <!-- Footer -->
     <div id="authFooter" class="text-center py-6 text-sm text-gray-600 border-t">
       Don't have an account?
-      <button onclick="showTab('register')"
-        class="text-primary font-medium hover:underline cursor-pointer">Register</button>
+      <button onclick="showTab('register')" class="text-primary font-medium hover:underline">Register</button>
     </div>
+
   </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
+  <!-- ====================== JAVASCRIPT ====================== -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
 
-  const API_KEY = "4whxTesomK1gZ5cBq9Hk8OIy";
-  const PROJECT_ID = "01jttgwp4nq5n4az3f3gc4hry1";
-  const BASE_URL = "https://core.hisend.hunnovate.com/api/v1";
+      // ==================== Hisend Configuration ====================
+      const API_KEY = "4whxTesomK1gZ5cBq9Hk8OIy";
+      const PROJECT_ID = "01jttgwp4nq5n4az3f3gc4hry1";
+      const TABLE_ID = "01kkgxpzcy6fzx5dgngdt2vhqd";
+      const BASE_URL = "https://core.hisend.hunnovate.com/api/v1";
 
-  // ================= LOGIN =================
-  document.getElementById("loginForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
+      let currentReference = "";
+      let currentEmail = "";
 
-    const email = document.getElementById("loginEmail").value.trim();
-    const password = document.getElementById("loginPassword").value.trim();
+      // ==================== Tab Switching ====================
+      function showTab(tab) {
+        const loginTab = document.getElementById('loginTab');
+        const registerTab = document.getElementById('registerTab');
+        const loginContent = document.getElementById('login-content');
+        const registerContent = document.getElementById('register-content');
+        const footer = document.getElementById('authFooter');
 
-    try {
-      const res = await fetch(
-        `${BASE_URL}/projects/${PROJECT_ID}/auth/login?api_key=${API_KEY}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify({
-            identifier: email,   // ✅ VERY IMPORTANT (NOT "email")
-            password: password
-          })
+        const isActive = "bg-primary text-white";
+        const isInactive = "text-gray-600 hover:text-gray-900";
+
+        if (tab === 'login') {
+          loginTab.className = `flex-1 py-4 mt-5 ml-5 rounded-2xl text-lg font-semibold ${isActive}`;
+          registerTab.className = `flex-1 py-4 mt-5 mr-5 rounded-2xl text-lg font-semibold ${isInactive}`;
+          loginContent.classList.remove('hidden');
+          registerContent.classList.add('hidden');
+          footer.innerHTML = `Don't have an account? <button id="switchToRegister" class="text-primary font-medium hover:underline">Register</button>`;
+          document.getElementById("switchToRegister").onclick = () => showTab('register');
+        } else {
+          registerTab.className = `flex-1 py-4 mt-5 mr-5 rounded-2xl text-lg font-semibold ${isActive}`;
+          loginTab.className = `flex-1 py-4 mt-5 ml-5 rounded-2xl text-lg font-semibold ${isInactive}`;
+          registerContent.classList.remove('hidden');
+          loginContent.classList.add('hidden');
+          footer.innerHTML = `Already have an account? <button id="switchToLogin" class="text-primary font-medium hover:underline">Login</button>`;
+          document.getElementById("switchToLogin").onclick = () => showTab('login');
         }
-      );
-
-      // 👇 Handle non-JSON (like your HTML error)
-      const text = await res.text();
-
-      let data;
-      try {
-        data = JSON.parse(text);
-      } catch {
-        console.error("Server returned HTML instead of JSON:", text);
-        alert("Server error ❌ (check console)");
-        return;
       }
 
-      console.log("LOGIN RESPONSE:", data);
+      document.getElementById('loginTab').addEventListener('click', () => showTab('login'));
+      document.getElementById('registerTab').addEventListener('click', () => showTab('register'));
+      showTab('login');
 
-      if (res.ok && data.data) {
-        alert("Login successful ✅");
+      // ==================== Register Password Match ====================
+      const passwordInput = document.getElementById('password');
+      const confirmInput = document.getElementById('password_confirmation');
+      const matchMessage = document.createElement('small');
+      matchMessage.className = "block mt-1 text-sm";
+      confirmInput.parentNode.appendChild(matchMessage);
 
-        // Save token
-        localStorage.setItem("auth_token", data.data.token || data.data.id);
-
-        window.location.href = "public/dashboard.html";
-      } else {
-        alert(data.message || "Invalid login ❌");
+      function checkPasswordMatch() {
+        if (confirmInput.value === '') { matchMessage.style.display = 'none'; return; }
+        const match = passwordInput.value === confirmInput.value;
+        matchMessage.innerHTML = match ? "✅ Passwords match" : "❌ Passwords do not match";
+        matchMessage.style.color = match ? "green" : "red";
+        matchMessage.style.display = 'block';
       }
+      passwordInput.addEventListener('input', checkPasswordMatch);
+      confirmInput.addEventListener('input', checkPasswordMatch);
 
-    } catch (err) {
-      console.error("Login error:", err);
-      alert("Network error ❌");
-    }
-  });
+      // 1. Target the specific ID
+      const form = document.getElementById("registerFormStep1");
 
-});
-</script>
+      // 2. Add the listener to that specific constant
+      form.addEventListener('submit', async (e) => {
+        // This is the most important line to prevent the refresh
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData);
+
+        try {
+          // Make sure PROJECT_ID and API_KEY are defined in your scope
+          const response = await axios.post(
+            `https://core.hisend.hunnovate.com/api/v1/projects/${PROJECT_ID}/auth/sign-up?api_key=${API_KEY}`,
+            data
+          );
+
+          alert('Registration successful!');
+
+          // 3. Properly reset the form fields after success
+          form.reset();
+
+          window.location.href = "dashboard.html";
+        } catch (error) {
+          alert(error.response?.data?.message || 'Registration failed. Please try again.');
+          console.error('Error registering:', error);
+        }
+      });
+
+
+      // ================= LOGIN =================
+      const loginForm = document.getElementById("loginForm");
+
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+        const data = { email, password }
+
+        try {
+          const response = await axios.post(`https://core.hisend.hunnovate.com/api/v1/projects/${PROJECT_ID}/auth/login?api_key=${API_KEY}`, data);
+          console.log('Login successful:', response);
+          localStorage.setItem('token', response.data.data.token);
+          // Store the token in localStorage
+          if (!response.data.data.token) {
+            throw new Error('No token received from the server.');
+          }
+          localStorage.setItem('token', response.data.data.token);
+          alert('Login successful!');
+          document.querySelector('form');
+          window.location.href = 'dashboard.html';
+
+ 
+        } catch (error) {
+          alert(error.response?.data?.message || 'Login failed. Please try again.');
+          console.error('Error logging in:', error);
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>

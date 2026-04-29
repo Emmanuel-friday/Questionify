@@ -58,7 +58,7 @@
                     <div class="flex items-center space-x-2">
                         <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=128&h=128&q=80"
                             alt="User Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-primary" />
-                        <span class="font-medium text-gray-800 hidden md:block">Ashley Smith</span>
+                        <span class="font-medium text-gray-800 hidden md:block"><span id="full_name"></span></span>
                     </div>
                 </div>
             </div>
@@ -367,7 +367,7 @@
             </div>
         </main>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         const ctxTrend = document.getElementById('scoreTrendChart').getContext('2d');
         new Chart(ctxTrend, {
@@ -390,6 +390,47 @@
                 }
             }
         });
+
+        // ==================== Hisend Configuration ====================
+        const API_KEY = "4whxTesomK1gZ5cBq9Hk8OIy";
+        const PROJECT_ID = "01jttgwp4nq5n4az3f3gc4hry1";
+        const TABLE_ID = "01kkgxpzcy6fzx5dgngdt2vhqd";
+        const BASE_URL = "https://core.hisend.hunnovate.com/api/v1";
+
+        let user = {};
+
+        const renderUserData = (user) => {
+            document.getElementById('full_name').innerHTML = user.last_name + ' ' + user.first_name
+        }
+
+        const getAuthUser = async () => {
+            try {
+                const token = localStorage.getItem('token');
+
+                if (!token) {
+                    console.error("No token found");
+                    return;
+                }
+
+                const response = await axios.get(
+                    `${BASE_URL}/projects/${PROJECT_ID}/auth/user?api_key=${API_KEY}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                );
+
+                console.log(response.data.data);
+                user = response.data.data
+                renderUserData(user)
+            } catch (error) {
+                console.error(error.response?.data || error.message);
+            }
+        };
+
+        getAuthUser();
+    
     </script>
 
 
