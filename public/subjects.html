@@ -62,11 +62,13 @@
             <span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
           </button>
 
-          <div class="flex items-center space-x-2">
-            <img
-              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=128&h=128&q=80"
-              alt="User" class="w-10 h-10 rounded-full object-cover border-2 border-primary" />
-            <span class="font-medium text-gray-800 hidden md:block">Ashley Smith</span>
+          <div>
+            <a class='flex gap-2 items-center' href="profilePage.html">
+              <img
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=128&h=128&q=80"
+                alt="User Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-primary" />
+              <span class="font-medium text-gray-800 hidden md:block"><span class="full_name"></span></span>
+            </a>
           </div>
         </div>
       </div>
@@ -77,7 +79,8 @@
     <!-- Sidebar – pink background -->
     <aside class="hidden md:block w-64 bg-white shadow-md h-screen sticky top-0 pt-8 overflow-y-auto">
       <nav class="px-4 space-y-2">
-        <a href="dashboard.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-xl transition">
+        <a href="dashboard.html"
+          class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-xl transition">
           <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -97,42 +100,43 @@
         </a>
 
         <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-xl transition">
-                    <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="13" r="8" />
-                        <path d="M12 9v4l3 3" />
-                        <path d="M5 3 2 6M22 6l-3-3" />
-                    </svg>
+          <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="13" r="8" />
+            <path d="M12 9v4l3 3" />
+            <path d="M5 3 2 6M22 6l-3-3" />
+          </svg>
           Mock Exams
         </a>
 
         <a href="performance.html"
           class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-xl transition">
-                    <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 3v18h18" />
-                        <path d="m3 9 4 4 6-6 4 4 4-4" />
-                    </svg>
+          <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18" />
+            <path d="m3 9 4 4 6-6 4 4 4-4" />
+          </svg>
           Performance
         </a>
 
         <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-xl transition">
-                    <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                        <path d="M14 2v6h6" />
-                        <path d="M9 15h6M9 10h6M9 18h6" />
-                    </svg>
+          <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <path d="M14 2v6h6" />
+            <path d="M9 15h6M9 10h6M9 18h6" />
+          </svg>
           Past Questions
         </a>
 
-        <a href="planning.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-xl transition">
-                    <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 19c-4.286 0-7-3-7-7s2.714-7 7-7h6c4.286 0 7 3 7 7s-2.714 7-7 7H9z" />
-                        <path d="M12 9v6M9 12h6" />
-                        <circle cx="16" cy="8" r="1" />
-                    </svg>
+        <a href="planning.html"
+          class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-xl transition">
+          <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-4.286 0-7-3-7-7s2.714-7 7-7h6c4.286 0 7 3 7 7s-2.714 7-7 7H9z" />
+            <path d="M12 9v6M9 12h6" />
+            <circle cx="16" cy="8" r="1" />
+          </svg>
           Pricing / Plans
         </a>
 
@@ -232,186 +236,83 @@
 
       <!-- All 20 Subjects Grid -->
       <h2 class="text-3xl font-bold text-gray-900 mb-8 mt-12">All Subjects</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8">
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img src="https://img.freepik.com/free-vector/hand-drawn-english-book-background_23-2149483336.jpg"
-            alt="English Language"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-green-100 to-green-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">English Language
-          </h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img
-            src="https://media.istockphoto.com/id/1203720475/vector/book-line-icons-set-open-books-dictionary-bible-audio-novel-literature-education-minimal.jpg"
-            alt="Literature In English"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-purple-100 to-purple-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Literature In
-            English</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img src="https://media.istockphoto.com/id/1433038575/vector/pi-icon-for-design-easily-editable.jpg"
-            alt="Mathematics"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-blue-100 to-blue-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Mathematics</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img
-            src="https://thumbs.dreamstime.com/b/physics-science-icons-set-classical-mechanics-experiments-equipment-tools-magnet-atom-pendulum-newton-s-laws-simplest-69017016.jpg"
-            alt="Physics"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-indigo-100 to-indigo-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Physics</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img src="https://www.shutterstock.com/image-vector/lab-test-tube-flask-vector-600nw-2670281709.jpg"
-            alt="Chemistry"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-red-100 to-red-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Chemistry</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img src="https://www.shutterstock.com/image-vector/set-hand-drawn-biologic-school-icons-260nw-2181737333.jpg"
-            alt="Biology"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-teal-100 to-teal-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Biology</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img src="https://cdn.shopify.com/s/files/1/0801/1012/5396/files/SEOon_unnamed.png?v=1741984629" alt="Yoruba"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-orange-100 to-orange-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Yoruba</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img
-            src="https://media.istockphoto.com/id/1638492494/vector/farming-and-agriculture-stroked-vector-icon-set.jpg"
-            alt="Agricultural Science"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-lime-100 to-lime-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Agricultural
-            Science</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img src="https://media.istockphoto.com/id/2188021989/vector/calculator-and-money-icon.jpg"
-            alt="Financial Accounting"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-yellow-100 to-yellow-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Financial
-            Accounting</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img src="https://www.intmath.com/functions-and-graphs/img/domain_and_range_worksheet.png"
-            alt="Further Mathematics"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-blue-100 to-blue-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Further Mathematics
-          </h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img
-            src="https://static.vecteezy.com/system/resources/thumbnails/051/333/061/small_2x/a-simple-black-icon-of-a-shopping-cart-perfect-for-e-commerce-websites-online-shopping-apps-or-retail-business-graphics-png.png"
-            alt="Commerce"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-cyan-100 to-cyan-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Commerce</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img
-            src="https://static.vecteezy.com/system/resources/previews/020/616/093/non_2x/world-globe-earth-single-continuous-line-round-global-map-geography-graphic-icon-simple-one-line-draw-doodle-for-education-concept-isolated-illustration-minimalist-design-on-white-background-vector.jpg"
-            alt="Geography"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-teal-100 to-teal-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Geography</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img src="https://thumbs.dreamstime.com/b/illustration-office-supplies-typewriter-30074822.jpg"
-            alt="Office Practice"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-gray-100 to-gray-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Office Practice
-          </h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img
-            src="https://thumbs.dreamstime.com/b/vector-illustration-megaphone-price-tag-symbolizing-advertising-outline-style-megaphone-advertising-price-tag-351655307.jpg"
-            alt="Marketing"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-pink-100 to-pink-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Marketing</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img src="https://www.shutterstock.com/image-vector/calculator-small-icon-set-accounting-260nw-2667578291.jpg"
-            alt="Book Keeping"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-yellow-100 to-yellow-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Book Keeping</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img
-            src="https://media.istockphoto.com/id/1094376302/vector/vector-illustration-of-christian-emblem-with-cross-and-holy-bible-religious-community-design.jpg"
-            alt="Christian Religious Studies"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-amber-100 to-amber-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Christian Religious
-            Studies</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img
-            src="https://thumbs.dreamstime.com/b/icon-capitol-building-washington-dc-american-congress-black-white-84439726.jpg"
-            alt="Government"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-red-100 to-red-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Government</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img
-            src="https://www.shutterstock.com/image-vector/democracy-elections-politics-line-icon-600nw-2422135285.jpg"
-            alt="Civic Education"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-blue-100 to-blue-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Civic Education
-          </h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img
-            src="https://thumbs.dreamstime.com/b/ancient-scroll-parchment-icon-document-history-knowledge-old-paper-vector-design-generative-ai-unfurling-symbolizing-407004013.jpg"
-            alt="History"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-amber-100 to-amber-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">History</h4>
-        </div>
-
-        <div
-          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
-          <img src="https://img.freepik.com/free-vector/profit-infographic-with-coins-statistics_603843-2926.jpg"
-            alt="Economics"
-            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-green-100 to-green-200 p-3 shadow-sm" />
-          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">Economics</h4>
-        </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8" id="subjectContainer">
+        <!-- Subject is rendered here -->
       </div>
     </main>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+
+    const TABLE_ID = "01kqcqcjyexsfs4y0bbwf7hc7r";
+    const API_KEY = "4whxTesomK1gZ5cBq9Hk8OIy";
+    const PROJECT_ID = "01jttgwp4nq5n4az3f3gc4hry1";
+    const BASE_URL = "https://core.hisend.hunnovate.com/api/v1";
+
+
+    let user = {};
+
+    const renderUserData = (user) => {
+      const elements = document.querySelectorAll('.full_name');
+
+      elements.forEach((el) => {
+        el.innerHTML = `${user.last_name} ${user.first_name}`;
+      });
+    };
+
+    const getAuthUser = async () => {
+      try {
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+          console.error("No token found");
+          return;
+        }
+
+        const response = await axios.get(
+          `${BASE_URL}/projects/${PROJECT_ID}/auth/user?api_key=${API_KEY}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+
+        // console.log(response.data.data);
+        user = response.data.data
+        renderUserData(user)
+      } catch (error) {
+        console.error(error.response?.data || error.message);
+      }
+    };
+
+    getAuthUser();
+
+    const renderSubjectList = async (subjects) => {
+      const subjectContainer = document.getElementById('subjectContainer');
+
+      subjects.forEach(subject => {
+        subjectContainer.innerHTML += `<div
+          class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
+          <img src="${subject.icon}"
+            alt="English Language"
+            class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-green-100 to-green-200 p-3 shadow-sm" />
+          <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors"> ${subject.name}
+          </h4>
+        </div>`;
+      })
+    }
+
+    const getSubjects = async (e) => {
+      const response = await axios.get(`${BASE_URL}/projects/hi_sense/tables/${TABLE_ID}/records?api_key=${API_KEY}`);
+      renderSubjectList(response.data.data);
+    };
+
+    getSubjects();
+
+
+  </script>
 
 </body>
 
