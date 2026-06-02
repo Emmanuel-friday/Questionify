@@ -21,7 +21,6 @@
 
 <body class="bg-gray-100 min-h-screen font-sans antialiased">
 
-  <!-- Floating Back Button -->
   <button onclick="history.back()"
     class="fixed bottom-6 left-6 z-50 bg-primary text-white px-5 py-3 rounded-full shadow-xl hover:bg-pink-700 transition flex items-center space-x-2">
     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -30,18 +29,20 @@
     <span>Back</span>
   </button>
 
-  <!-- Top Bar -->
   <header class="bg-white shadow-sm sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
       <div class="flex items-center space-x-4">
+        <button id="menuBtn" class="md:hidden text-gray-600 hover:text-primary focus:outline-none transition p-1">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
         <div class="text-2xl font-bold text-primary">Questionify</div>
-        <span class="text-gray-500 font-medium">Subjects</span>
+        <span class="text-gray-500 font-medium hidden sm:inline">Subjects</span>
       </div>
 
       <div class="flex items-center space-x-6">
-        <!-- Quick Access Buttons -->
-
-        <!-- Search -->
         <div class="relative hidden sm:block">
           <input type="text" placeholder="Search subjects..."
             class="w-64 pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition text-sm" />
@@ -52,7 +53,6 @@
           </svg>
         </div>
 
-        <!-- Avatar & Notification -->
         <div class="flex items-center space-x-6">
           <button class="relative p-2 text-gray-500 hover:text-primary transition">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -75,9 +75,12 @@
     </div>
   </header>
 
+  <div id="sidebarOverlay" class="fixed inset-0 bg-black/40 z-40 hidden md:hidden transition-opacity duration-300">
+  </div>
+
   <div class="flex min-h-screen">
-    <!-- Sidebar – pink background -->
-    <aside class="hidden md:block w-64 bg-white shadow-md h-screen sticky top-0 pt-8 overflow-y-auto">
+    <aside id="sidebar"
+      class="fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 md:sticky md:top-16 z-40 w-64 bg-white shadow-md h-[calc(100vh-4rem)] pt-8 overflow-y-auto transition-transform duration-300 ease-in-out">
       <nav class="px-4 space-y-2">
         <a href="dashboard.html"
           class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-xl transition">
@@ -88,8 +91,16 @@
           Dashboard
         </a>
 
-        <a href="subjects.html"
-          class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-00 bg-gray-100 rounded-xl transition">
+        <a href="dashboard.html"
+          class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 rounded-xl transition">
+          <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          Dashboard
+        </a>
+
+        <a href="subjects.html" class="flex items-center px-4 py-3 text-gray-600 bg-gray-100 rounded-xl transition">
           <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
@@ -178,11 +189,8 @@
       </nav>
     </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 p-6 md:p-10">
-      <!-- 3 Big Cards at the top -->
+    <main class="flex-1 p-6 md:p-10 w-full overflow-x-hidden">
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-        <!-- Past Questions -->
         <div onclick="window.location.href='past-questions.html'"
           class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl hover:scale-[1.02] transition cursor-pointer text-center">
           <div class="flex justify-center mb-6">
@@ -194,12 +202,9 @@
             </div>
           </div>
           <h3 class="text-2xl font-bold mb-2">Past Questions</h3>
-          <p class="text-gray-600">
-            Practice with real past exams
-          </p>
+          <p class="text-gray-600">Practice with real past exams</p>
         </div>
 
-        <!-- Mock Exams -->
         <div onclick="window.location.href='mock-exams.html'"
           class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl hover:scale-[1.02] transition cursor-pointer text-center">
           <div class="flex justify-center mb-6">
@@ -211,12 +216,9 @@
             </div>
           </div>
           <h3 class="text-2xl font-bold mb-2">Mock Exams</h3>
-          <p class="text-gray-600">
-            Timed CBT simulations
-          </p>
+          <p class="text-gray-600">Timed CBT simulations</p>
         </div>
 
-        <!-- Performance -->
         <div onclick="window.location.href='performance.html'"
           class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl hover:scale-[1.02] transition cursor-pointer text-center">
           <div class="flex justify-center mb-6">
@@ -228,34 +230,41 @@
             </div>
           </div>
           <h3 class="text-2xl font-bold mb-2">Performance</h3>
-          <p class="text-gray-600">
-            Track your progress & insights
-          </p>
+          <p class="text-gray-600">Track your progress & insights</p>
         </div>
       </div>
 
-      <!-- All 20 Subjects Grid -->
       <h2 class="text-3xl font-bold text-gray-900 mb-8 mt-12">All Subjects</h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8" id="subjectContainer">
-        <!-- Subject is rendered here -->
       </div>
     </main>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
-
     const TABLE_ID = "01kqcqcjyexsfs4y0bbwf7hc7r";
     const API_KEY = "4whxTesomK1gZ5cBq9Hk8OIy";
     const PROJECT_ID = "01jttgwp4nq5n4az3f3gc4hry1";
     const BASE_URL = "https://core.hisend.hunnovate.com/api/v1";
 
-
     let user = {};
+
+    // --- Dynamic Mobile Sidebar Logic ---
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    const toggleSidebar = () => {
+      sidebar.classList.toggle('-translate-x-full');
+      sidebarOverlay.classList.toggle('hidden');
+    };
+
+    menuBtn.addEventListener('click', toggleSidebar);
+    sidebarOverlay.addEventListener('click', toggleSidebar);
+    // ------------------------------------
 
     const renderUserData = (user) => {
       const elements = document.querySelectorAll('.full_name');
-
       elements.forEach((el) => {
         el.innerHTML = `${user.last_name} ${user.first_name}`;
       });
@@ -264,7 +273,6 @@
     const getAuthUser = async () => {
       try {
         const token = localStorage.getItem('token');
-
         if (!token) {
           console.error("No token found");
           return;
@@ -272,16 +280,11 @@
 
         const response = await axios.get(
           `${BASE_URL}/projects/${PROJECT_ID}/auth/user?api_key=${API_KEY}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
+          { headers: { Authorization: `Bearer ${token}` } }
         );
 
-        // console.log(response.data.data);
-        user = response.data.data
-        renderUserData(user)
+        user = response.data.data;
+        renderUserData(user);
       } catch (error) {
         console.error(error.response?.data || error.message);
       }
@@ -291,29 +294,31 @@
 
     const renderSubjectList = async (subjects) => {
       const subjectContainer = document.getElementById('subjectContainer');
+      subjectContainer.innerHTML = ""; // Clear loader if any
 
       subjects.forEach(subject => {
         subjectContainer.innerHTML += `<div
           class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
           <img src="${subject.icon}"
-            alt="English Language"
+            alt="${subject.name}"
             class="mx-auto mb-4 w-16 h-16 object-contain rounded-full bg-gradient-to-br from-green-100 to-green-200 p-3 shadow-sm" />
           <h4 class="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors"> ${subject.name}
           </h4>
         </div>`;
-      })
-    }
+      });
+    };
 
-    const getSubjects = async (e) => {
-      const response = await axios.get(`${BASE_URL}/projects/hi_sense/tables/${TABLE_ID}/records?api_key=${API_KEY}`);
-      renderSubjectList(response.data.data);
+    const getSubjects = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/projects/hi_sense/tables/${TABLE_ID}/records?api_key=${API_KEY}`);
+        renderSubjectList(response.data.data);
+      } catch (error) {
+        console.error("Error fetching subjects:", error);
+      }
     };
 
     getSubjects();
-
-
   </script>
-
 </body>
 
 </html>
